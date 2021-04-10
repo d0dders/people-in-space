@@ -18,12 +18,14 @@ function getJSON(url, callback) {
 
 // Generate the markup for each profile
 function generateHTML(data) {
+  console.log(data);
   const section = document.createElement('section');
   peopleList.appendChild(section);
   // Check if request returns a 'standard' page from Wiki
   if (data.type === 'standard') {
+    const thumbnail = data.thumbnail !== undefined ? data.thumbnail.source :  "img/profile.jpg";
     section.innerHTML = `
-      <img src=${data.thumbnail.source}>
+      <img src=${thumbnail}>
       <h2>${data.title}</h2>
       <p>${data.description}</p>
       <p>${data.extract}</p>
